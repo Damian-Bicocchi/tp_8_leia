@@ -1,12 +1,12 @@
 % Hechos de vacunas %
-edad_minima(moderna, 0.5).
-edad_minima(spikevax, 0.5).
+edad_minima(spikevax_bivariante, 0.5).
+edad_minima(spikevax_monovariante, 0.5).
 edad_minima(comirnaty, 12).
 
-contraindicacion(moderna, anafilaxia).
-contraindicacion(moderna, reaccion_alergica_grave).
-contraindicacion(spikevax, anafilaxia).
-contraindicacion(spikevax, reaccion_alergica_grave).
+contraindicacion(spikevax_bivariante, anafilaxia).
+contraindicacion(spikevax_bivariante, reaccion_alergica_grave).
+contraindicacion(spikevax_monovariante, anafilaxia).
+contraindicacion(spikevax_monovariante, reaccion_alergica_grave).
 contraindicacion(comirnaty, anafilaxia).
 contraindicacion(comirnaty, reaccion_alergica_grave).
 
