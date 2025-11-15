@@ -1,55 +1,32 @@
 :- initialization(main).
 
 main :-
-    consult('laboral.pl'),
+    consult('ejercicio2.pl'),
 
-    writeln("¿Juan es apto para ser programador?"),
-    (es_apta(juan, programador) -> writeln(true) ; writeln(false)),
-    writeln("--------------------"),
+    writeln("===== Consulta 1: Personas disponibles para un rol en una localidad ====="),
+    writeln("Personas para rol 'programador' en 'la_plata':"),
+    (personas_para_rol_en_localidad(P, programador, la_plata),
+        writeln(P),
+        fail ; true),
+    writeln("----------------------------------------"),
 
-    writeln("¿Juan es apto para ser analista?"),
-    (es_apta(juan, analista) -> writeln(true) ; writeln(false)),
-    writeln("--------------------"),
+    writeln("===== Consulta 2: Personas disponibles para un rol ====="),
+    writeln("Personas para rol 'diseniador':"),
+    (personas_para_rol(P, diseniador),
+        writeln(P),
+        fail ; true),
+    writeln("----------------------------------------"),
 
-    writeln("Personas para el rol de programador:"),
-    listar_personas_para_rol(programador),
-    writeln("--------------------"),
+    writeln("===== Consulta 3: Roles que puede ocupar una persona ====="),
+    writeln("Roles posibles para 'juan':"),
+    (roles_para_persona(juan, R),
+        writeln(R),
+        fail ; true),
+    writeln("----------------------------------------"),
 
-    writeln("Personas para el rol de analista:"),
-    listar_personas_para_rol(analista),
-    writeln("--------------------"),
-
-    writeln("Personas disponibles para programador en Córdoba:"),
-    listar_personas_para_rol_en_localidad(programador, cordoba),
-    writeln("--------------------"),
-
-    writeln("Roles que puede ocupar Juan:"),
-    listar_roles_para_persona(juan),
-    writeln("--------------------"),
+    writeln("===== Consulta 4: ¿Es apta una persona para un rol? ====="),
+    writeln("¿Es Ana apta para 'tester'?"),
+    (es_apta(ana, tester) -> writeln(true) ; writeln(false)),
+    writeln("----------------------------------------"),
 
     halt.
-
-% ----------------------------------------
-% Helpers para imprimir listas en Prolog
-% ----------------------------------------
-
-listar_personas_para_rol(Rol) :-
-    (   personas_para_rol(Persona, Rol),
-        writeln(Persona),
-        fail
-    ;   true
-    ).
-
-listar_personas_para_rol_en_localidad(Rol, Localidad) :-
-    (   personas_para_rol_en_localidad(Persona, Rol, Localidad),
-        writeln(Persona),
-        fail
-    ;   true
-    ).
-
-listar_roles_para_persona(Persona) :-
-    (   roles_para_persona(Persona, Rol),
-        writeln(Rol),
-        fail
-    ;   true
-    ).
