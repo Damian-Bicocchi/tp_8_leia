@@ -18,7 +18,7 @@ prefiere(juan, programador).
 puede_ir(juan, capital).
 puede_ir(juan, cordoba).
 puede_ir(juan, mendoza).
-puede_ir(juan, exterior).
+puede_ir(juan, la_plata).
 
 
 % Relación entre roles y skills necesarias
@@ -38,26 +38,34 @@ requiere(programador, php).
 requiere(programador, cpp).
 
 
-% Reglas pedidas
-personas_para_rol_en_localidad(Persona, Rol, Localidad) :-
-    prefiere(Persona, Rol),
+% Reglas
+
+
+% :) Una persona es apta para un rol si
+% Esta Rol requiere una habilidad que la persona posea
+es_apta(Persona, Rol) :-
     requiere(Rol, SkillReq),
-    skill(Persona, SkillReq),
+    skill(Persona, SkillReq).
+
+% :) :) Una persona puede ocupar un rol
+% tiene preferencia por un rol y es apta para el mismo
+puede_ocupar(Persona, Rol) :-
+    prefiere(Persona, Rol),
+    es_apta(Persona, Rol).
+
+% :) Una persona puede ocupar un rol en una localidad si 
+% puede ocupar ese rol y puede ir a esa localidad
+personas_para_rol_en_localidad(Persona, Rol, Localidad) :-
+    puede_ocupar(Persona, Rol),
     puede_ir(Persona, Localidad).
 
 
-personas_para_rol(Persona, Rol) :-
-    prefiere(Persona, Rol),
-    requiere(Rol, SkillReq),
-    skill(Persona, SkillReq).
-
-roles_para_persona(Persona, Rol) :-
-    prefiere(Persona, Rol),
+% :) Una persona esta disponible para un rol si
+% Ese Rol requiere una habilidad que la persona tenga
+disponible_para_rol(Persona, Rol) :-
     requiere(Rol, SkillReq),
     skill(Persona, SkillReq).
 
 
-es_apta(Persona, Rol) :-
-    prefiere(Persona, Rol),
-    requiere(Rol, SkillReq),
-    skill(Persona, SkillReq).
+
+
