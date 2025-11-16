@@ -7,9 +7,8 @@ hace_algo(sebastian, mentir).
 
 % Reglas del dominio %
 
-% Una persona es buena si esa Persona hace_algo Algo y ese Algo es_algo bueno %
+% Una persona es buena si esa Persona hace algo Algo y ese Algo es algo bueno %
 es_buena(Persona) :- hace_algo(Persona, Algo), es_algo(Algo, bueno).
 
+% Una persona es mala si esa Persona hace algo y ese Algo es algo malo %
 es_mala(Persona):- hace_algo(Persona, Algo), es_algo(Algo, malo).
-
-
