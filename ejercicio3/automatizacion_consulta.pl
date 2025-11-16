@@ -25,8 +25,8 @@ main :-
     writeln("¿Es Luis tío de Juana?"),
     (tio(luis, juana) -> writeln(true) ; writeln(false)),
 
-    writeln("¿Es Maria tía de Pedro?"),
-    (tia(maria, pedro) -> writeln(true) ; writeln(false)),
+    writeln("¿Es Sofia tía de Pedro?"),
+    (tia(sofia, pedro) -> writeln(true) ; writeln(false)),
     writeln("--------------------"),
 
     % ---------------------------
